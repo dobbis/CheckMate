@@ -1,4 +1,4 @@
-enum class Piece {
+enum class PieceClassify {
     KING,
     QUEEN,
     BISHOP,
