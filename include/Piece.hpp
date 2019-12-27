@@ -14,7 +14,12 @@ private:
     
 public:
     Piece();
-    Piece(std::string piece_class, std::string piece_color);
+    Piece(std::string piece_class, std::string piece_color, int xpos, int ypos);
+
+    std::pair<int, int> getXYPos();
+    void setXYPos(int x, int y);
+
+    bool movePieceToPos(int x, int y);
 };
 
 #endif
