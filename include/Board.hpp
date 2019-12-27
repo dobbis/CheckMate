@@ -5,9 +5,11 @@
 
 class Board {
 private:
-    Piece** gameboard;
+    Piece*** gameboard;
+    Piece** pieces;
 public:
     Board();
+    ~Board();
 
     void printGameboard();
 };
