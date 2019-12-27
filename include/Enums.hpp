@@ -1,3 +1,6 @@
+#ifndef ENUMS_HPP
+#define ENUMS_HPP
+
 enum class PieceClassify {
     KING,
     QUEEN,
@@ -8,7 +11,10 @@ enum class PieceClassify {
     EMPTY
 };
 
-enum class Color {
+enum class PieceColor {
     BLACK,
-    WHITE
+    WHITE,
+    EMPTY
 };
+
+#endif
