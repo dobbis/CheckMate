@@ -11,6 +11,7 @@ public:
     Board();
     ~Board();
 
+    bool movePiecePosToPos(int x1, int y1, int x2, int y2);
     void printGameboard();
 };
 
