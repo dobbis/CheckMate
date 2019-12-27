@@ -4,6 +4,7 @@
 #include "Enums.hpp"
 
 #include <string>
+#include <stdlib.h>
 
 class Piece {
 private:
@@ -19,7 +20,14 @@ public:
     std::pair<int, int> getXYPos();
     void setXYPos(int x, int y);
 
-    bool movePieceToPos(int x, int y);
+    bool canMovePieceToPos(int x, int y);
 };
+
+bool canMovePawnToPos(int dx, int dy, PieceColor color);
+bool canMoveRookToPos(int dx, int dy);
+bool canMoveKnightToPos(int dx, int dy);
+bool canMoveBishopToPos(int dx, int dy);
+bool canMoveQueenToPos(int dx, int dy);
+bool canMoveKingToPos(int dx, int dy);
 
 #endif
