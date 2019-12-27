@@ -56,17 +56,17 @@ bool Piece::canMovePieceToPos(int x, int y) {
     dy = y - y_pos;
 
     if (piece_class == PieceClassify::KING) {
-
+        return canMoveKingToPos(dx, dy);
     } else if (piece_class == PieceClassify::QUEEN) {
-
+        return canMoveQueenToPos(dx, dy);
     } else if (piece_class == PieceClassify::BISHOP) {
-
+        return canMoveBishopToPos(dx, dy);
     } else if (piece_class == PieceClassify::KNIGHT) {
-
+        return canMoveKnightToPos(dx, dy);
     } else if (piece_class == PieceClassify::ROOK) {
-
+        return canMoveRookToPos(dx, dy);
     } else if (piece_class == PieceClassify::PAWN) {
-
+        canMovePawnToPos(dx, dy, piece_color);
     } else {
         return false;
     }
