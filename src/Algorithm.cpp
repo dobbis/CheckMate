@@ -6,15 +6,23 @@ bool canMocePawnToPos(int dx, int dy, PieceColor color) {
     }
 }
 
-bool canMoveRookToPos(int dx, int dy) {
+bool canMoveRookToPos(int dx, int dy, int x, int y) {
     if (dx == 0) {
-        if (dy == 0) {
-            return false;
+        if (dy < 0) {
+            return availalbeMoveRook(MoveType::DOWN, dx, dy, x, y, 0);
+        } else if (dy > 0) {
+            return availalbeMoveRook(MoveType::UP, dx, dy, x, y, 0);
         } else {
-            return true;
+            return false;
         }
     } else if (dy == 0) {
-        return true;
+        if (dx > 0) {
+            return availalbeMoveRook(MoveType::RIGHT, dx, dy, x, y, 0);
+        } else if (dx < 0) {
+            return availalbeMoveRook(MoveType::LEFT, dx, dy, x, y, 0);
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
