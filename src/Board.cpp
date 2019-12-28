@@ -67,6 +67,10 @@ Board::~Board() {
     delete gameboard;
 }
 
+Piece* Piece::getPieceAtPos(int x, int y) {
+    return gameboard[y][x];    
+}
+
 bool Board::movePiecePosToPos(int x1, int y1, int x2, int y2) {
     Piece* selected_piece = gameboard[y1][x1];
 
