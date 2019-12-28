@@ -17,4 +17,15 @@ enum class PieceColor {
     EMPTY
 };
 
+enum class MoveType {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+    LEFTUP,
+    LEFTDOWN,
+    RIGHTUP,
+    RIGHTDOWN
+};
+
 #endif
