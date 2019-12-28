@@ -2,9 +2,9 @@
 #define PIECE_HPP
 
 #include "Enums.hpp"
+#include "Algorithm.hpp"
 
 #include <string>
-#include <stdlib.h>
 
 class Piece {
 private:
@@ -22,12 +22,5 @@ public:
 
     bool canMovePieceToPos(int x, int y);
 };
-
-bool canMovePawnToPos(int dx, int dy, PieceColor color);
-bool canMoveRookToPos(int dx, int dy);
-bool canMoveKnightToPos(int dx, int dy);
-bool canMoveBishopToPos(int dx, int dy);
-bool canMoveQueenToPos(int dx, int dy);
-bool canMoveKingToPos(int dx, int dy);
 
 #endif
