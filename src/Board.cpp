@@ -67,7 +67,7 @@ Board::~Board() {
     delete gameboard;
 }
 
-Piece* Piece::getPieceAtPos(int x, int y) {
+Piece* Board::getPieceAtPos(int x, int y) {
     return gameboard[y][x];    
 }
 
