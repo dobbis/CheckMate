@@ -1,10 +1,12 @@
 #include "Piece.hpp"
+#include "Board.hpp"
 
 Piece::Piece() {
     piece_class = PieceClassify::EMPTY;
     piece_color = PieceColor::EMPTY;
     x_pos = 0;
     y_pos = 0;
+    first_move = true;
 }
 
 Piece::Piece(std::string piece_class_, std::string piece_color_, int xpos, int ypos) {
@@ -39,10 +41,15 @@ Piece::Piece(std::string piece_class_, std::string piece_color_, int xpos, int y
     piece_color = pcolor;
     x_pos = xpos;
     y_pos = ypos;
+    first_move = true;
 }
 
 std::pair<int, int> Piece::getXYPos() {
     return std::make_pair(x_pos, y_pos);
+}
+
+bool Piece::getFirstMove() {
+    return first_move;
 }
 
 void Piece::setXYPos(int x, int y) {
@@ -50,7 +57,11 @@ void Piece::setXYPos(int x, int y) {
     y_pos = y;
 }
 
-bool Piece::canMovePieceToPos(int x, int y) {
+void Piece::setFirstMove() {
+    first_move = false;
+}
+
+bool Piece::canMovePieceToPos(int x, int y, Board board) {
     int dx, dy;
     dx = x - x_pos;
     dy = y - y_pos;
@@ -58,15 +69,15 @@ bool Piece::canMovePieceToPos(int x, int y) {
     if (piece_class == PieceClassify::KING) {
         return canMoveKingToPos(dx, dy);
     } else if (piece_class == PieceClassify::QUEEN) {
-        return canMoveQueenToPos(dx, dy, x_pos, y_pos);
+        return canMoveQueenToPos(dx, dy, x_pos, y_pos, board);
     } else if (piece_class == PieceClassify::BISHOP) {
-        return canMoveBishopToPos(dx, dy, x_pos, y_pos);
+        return canMoveBishopToPos(dx, dy, x_pos, y_pos, board);
     } else if (piece_class == PieceClassify::KNIGHT) {
         return canMoveKnightToPos(dx, dy);
     } else if (piece_class == PieceClassify::ROOK) {
-        return canMoveRookToPos(dx, dy, x_pos, y_pos);
+        return canMoveRookToPos(dx, dy, x_pos, y_pos, board);
     } else if (piece_class == PieceClassify::PAWN) {
-        canMovePawnToPos(dx, dy, piece_color);
+        canMovePawnToPos(dx, dy, x_pos, y_pos, piece_color, first_move, board);
     } else {
         return false;
     }
