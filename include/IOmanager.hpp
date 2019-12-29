@@ -1,12 +1,12 @@
-#ifnedf IOMANAGER_HPP
+#ifndef IOMANAGER_HPP
 #define IOMANAGER_HPP
 
 #include "Board.hpp"
 
 #include <iostream>
+#include <string>
 
-void printOneBlock(Board board, int x, int y);
-void printFirstGameboard(Board board);
-void printGameboardAfterMove(Board board, int x1, int y1, int x2, int y2);
+std::string getOneBlock(Piece* piece, int x, int y);
+void printGameboard(Board* board);
 
 #endif

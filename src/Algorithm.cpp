@@ -1,36 +1,36 @@
 #include "Algorithm.hpp"
 #include "Board.hpp"
 
-bool availableMoveRook(MoveType direction, int dx, int dy, int x, int y, int count, Board board) {
+bool availableMoveRook(MoveType direction, int dx, int dy, int x, int y, int count, Board* board) {
     if (direction == MoveType::DOWN) {
         if (count == dy) {
             return true;
-        } else if (board.getPieceAtPos(x, y + (count++)) == nullptr) {
-            return availalbeMoveRook(direction, dx, dy, x, y, count, board);
+        } else if (board->getPieceAtPos(x, y + (count++)) == nullptr) {
+            return availableMoveRook(direction, dx, dy, x, y, count, board);
         } else {
             return false;
         }
     } else if (direction == MoveType::UP) {
         if (count == -dy) {
             return true;
-        } else if (board.getPieceAtPos(x, y - (count++)) == nullptr) {
-            return availalbeMoveRook(direction, dx, dy, x, y, count, board);
+        } else if (board->getPieceAtPos(x, y - (count++)) == nullptr) {
+            return availableMoveRook(direction, dx, dy, x, y, count, board);
         } else {
             return false;
         }
     } else if (direction == MoveType::LEFT) {
         if (count == -dx) {
             return true;
-        } else if (board.getPieceAtPos(x - (count++), y) == nullptr) {
-            return availalbeMoveRook(direction, dx, dy, x, y, count, board);
+        } else if (board->getPieceAtPos(x - (count++), y) == nullptr) {
+            return availableMoveRook(direction, dx, dy, x, y, count, board);
         } else {
             return false;
         }
     } else if (direction == MoveType::RIGHT) {
         if (count == dx) {
             return true;
-        } else if (board.getPieceAtPos(x + (count++), y) == nullptr) {
-            return availalbeMoveRook(direction, dx, dy, x, y, count, board);
+        } else if (board->getPieceAtPos(x + (count++), y) == nullptr) {
+            return availableMoveRook(direction, dx, dy, x, y, count, board);
         } else {
             return false;
         }
@@ -39,11 +39,11 @@ bool availableMoveRook(MoveType direction, int dx, int dy, int x, int y, int cou
     }
 }
 
-bool availableMoveBishop(MoveType direction, int dx, int dy, int x, int y, int count, Board board) {
+bool availableMoveBishop(MoveType direction, int dx, int dy, int x, int y, int count, Board* board) {
     if (direction == MoveType::RIGHTDOWN) {
         if (count == dx) {
             return true;
-        } else if (board.getPieceAtPos(x + (count++), y + (count++)) == nullptr) {
+        } else if (board->getPieceAtPos(x + (count++), y + (count++)) == nullptr) {
             return availableMoveBishop(direction, dx, dy, x, y, count, board);
         } else {
             return false;
@@ -51,7 +51,7 @@ bool availableMoveBishop(MoveType direction, int dx, int dy, int x, int y, int c
     } else if (direction == MoveType::RIGHTUP) {
         if (count == dx) {
             return true;
-        } else if (board.getPieceAtPos(x + (count++), y - (count++)) == nullptr) {
+        } else if (board->getPieceAtPos(x + (count++), y - (count++)) == nullptr) {
             return availableMoveBishop(direction, dx, dy, x, y, count, board);
         } else {
             return false;
@@ -59,7 +59,7 @@ bool availableMoveBishop(MoveType direction, int dx, int dy, int x, int y, int c
     } else if (direction == MoveType::LEFTDOWN) {
         if (count == -dx) {
             return true;
-        } else if (board.getPieceAtPos(x - (count++), y + (count++)) == nullptr) {
+        } else if (board->getPieceAtPos(x - (count++), y + (count++)) == nullptr) {
             return availableMoveBishop(direction, dx, dy, x, y, count, board);
         } else {
             return false;
@@ -67,7 +67,7 @@ bool availableMoveBishop(MoveType direction, int dx, int dy, int x, int y, int c
     } else if (direction == MoveType::LEFTUP) {
         if (count == -dx) {
             return true;
-        } else if (board.getPieceAtPos(x - (count++), y - (count++)) == nullptr) {
+        } else if (board->getPieceAtPos(x - (count++), y - (count++)) == nullptr) {
             return availableMoveBishop(direction, dx, dy, x, y, count, board);
         } else {
             return false;
@@ -77,27 +77,27 @@ bool availableMoveBishop(MoveType direction, int dx, int dy, int x, int y, int c
     }
 }
 
-bool availableMovePawn(MoveType direction, int x, int y, Board board) {
+bool availableMovePawn(MoveType direction, int x, int y, Board* board) {
     if (direction == MoveType::RIGHTDOWN) {
-        if (board.getPieceAtPos(x + 1, y + 1) == nullptr) {
+        if (board->getPieceAtPos(x + 1, y + 1) == nullptr) {
             return false;
         } else {
             return true;
         }
     } else if (direction == MoveType::RIGHTUP) {
-        if (board.getPieceAtPos(x + 1, y - 1) == nullptr) {
+        if (board->getPieceAtPos(x + 1, y - 1) == nullptr) {
             return false;
         } else {
             return true;
         }
     } else if (direction == MoveType::LEFTDOWN) {
-        if (board.getPieceAtPos(x - 1, y + 1) == nullptr) {
+        if (board->getPieceAtPos(x - 1, y + 1) == nullptr) {
             return false;
         } else {
             return true;
         }
     } else if (direction == MoveType::LEFTUP) {
-        if (board.getPieceAtPos(x - 1, y - 1) == nullptr) {
+        if (board->getPieceAtPos(x - 1, y - 1) == nullptr) {
             return false;
         } else {
             return true;
@@ -107,7 +107,7 @@ bool availableMovePawn(MoveType direction, int x, int y, Board board) {
     }
 }
 
-bool canMocePawnToPos(int dx, int dy, int x, int y, PieceColor color, bool first_move, Board board) {
+bool canMovePawnToPos(int dx, int dy, int x, int y, PieceColor color, bool first_move, Board* board) {
     if (color == PieceColor::BLACK) {
         if (dx == 0 && dy == 2) {
             return first_move;
@@ -145,20 +145,20 @@ bool canMocePawnToPos(int dx, int dy, int x, int y, PieceColor color, bool first
     }
 }
 
-bool canMoveRookToPos(int dx, int dy, int x, int y, Board board) {
+bool canMoveRookToPos(int dx, int dy, int x, int y, Board* board) {
     if (dx == 0) {
         if (dy < 0) {
-            return availalbeMoveRook(MoveType::DOWN, dx, dy, x, y, 1, board);
+            return availableMoveRook(MoveType::DOWN, dx, dy, x, y, 1, board);
         } else if (dy > 0) {
-            return availalbeMoveRook(MoveType::UP, dx, dy, x, y, 1, board);
+            return availableMoveRook(MoveType::UP, dx, dy, x, y, 1, board);
         } else {
             return false;
         }
     } else if (dy == 0) {
         if (dx > 0) {
-            return availalbeMoveRook(MoveType::RIGHT, dx, dy, x, y, 1, board);
+            return availableMoveRook(MoveType::RIGHT, dx, dy, x, y, 1, board);
         } else if (dx < 0) {
-            return availalbeMoveRook(MoveType::LEFT, dx, dy, x, y, 1, board);
+            return availableMoveRook(MoveType::LEFT, dx, dy, x, y, 1, board);
         } else {
             return false;
         }
@@ -185,7 +185,7 @@ bool canMoveKnightToPos(int dx, int dy) {
     }
 }
 
-bool canMoveBishopToPos(int dx, int dy, int x, int y, Board board) {
+bool canMoveBishopToPos(int dx, int dy, int x, int y, Board* board) {
     if (abs(dx) == abs(dy)) {
         if (dx == 0 && dy == 0) {
             return false;
@@ -205,7 +205,7 @@ bool canMoveBishopToPos(int dx, int dy, int x, int y, Board board) {
     }
 }
 
-bool canMoveQueenToPos(int dx, int dy, int x, int y, Board board) {
+bool canMoveQueenToPos(int dx, int dy, int x, int y, Board* board) {
     if (dx == 0 && dy == 0) {
         return false;
     } else if (abs(dx) == abs(dy)) {
@@ -223,17 +223,17 @@ bool canMoveQueenToPos(int dx, int dy, int x, int y, Board board) {
     } else if (dx == 0 || dy == 0) {
         if (dx == 0) {
             if (dy < 0) {
-                return availalbeMoveRook(MoveType::DOWN, dx, dy, x, y, 1, board);
+                return availableMoveRook(MoveType::DOWN, dx, dy, x, y, 1, board);
             } else if (dy > 0) {
-                return availalbeMoveRook(MoveType::UP, dx, dy, x, y, 1, board);
+                return availableMoveRook(MoveType::UP, dx, dy, x, y, 1, board);
             } else {
                 return false;
             }
         } else if (dy == 0) {
             if (dx > 0) {
-                return availalbeMoveRook(MoveType::RIGHT, dx, dy, x, y, 1, board);
+                return availableMoveRook(MoveType::RIGHT, dx, dy, x, y, 1, board);
             } else if (dx < 0) {
-                return availalbeMoveRook(MoveType::LEFT, dx, dy, x, y, 1, board);
+                return availableMoveRook(MoveType::LEFT, dx, dy, x, y, 1, board);
             } else {
                 return false;
             }

@@ -59,12 +59,12 @@ Board::~Board() {
     for (int i = 0; i < 32; i++) {
         delete pieces[i];
     }
-    delete pieces;
+    delete[] pieces;
 
     for (int i = 0; i < 8; i++) {
-        delete gameboard[i];
+        delete[] gameboard[i];
     }
-    delete gameboard;
+    delete[] gameboard;
 }
 
 Piece* Board::getPieceAtPos(int x, int y) {
@@ -77,7 +77,10 @@ bool Board::movePiecePosToPos(int x1, int y1, int x2, int y2) {
     if (selected_piece == nullptr) {
         return false;
     } else {
-        if (selected_piece->canMovePieceToPos(x2, y2)) {
+        if (selected_piece->canMovePieceToPos(x2, y2, this)) {
+            if (selected_piece->getFirstMove()) {
+                selected_piece->setFirstMove();
+            }
             gameboard[y2][x2] = selected_piece;
             gameboard[y1][x1] = nullptr;
             return true;

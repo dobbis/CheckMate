@@ -22,11 +22,13 @@ public:
 
     std::pair<int, int> getXYPos();
     bool getFirstMove();
+    PieceClassify getPieceClass();
+    PieceColor getPieceColor();
 
     void setXYPos(int x, int y);
     void setFirstMove();
 
-    bool canMovePieceToPos(int x, int y, Board board);
+    bool canMovePieceToPos(int x, int y, Board* board);
 };
 
 #endif

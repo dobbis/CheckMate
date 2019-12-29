@@ -29,7 +29,7 @@ Piece::Piece(std::string piece_class_, std::string piece_color_, int xpos, int y
         pclass = PieceClassify::KNIGHT;
     } else if (piece_class_ == "BISHOP") {
         pclass = PieceClassify::BISHOP;
-    } else if (piece_class_ == "QUENN") {
+    } else if (piece_class_ == "QUEEN") {
         pclass = PieceClassify::QUEEN;
     } else if (piece_class_ == "KING") {
         pclass = PieceClassify::KING;
@@ -52,6 +52,14 @@ bool Piece::getFirstMove() {
     return first_move;
 }
 
+PieceClassify Piece::getPieceClass() {
+    return piece_class;
+}
+
+PieceColor Piece::getPieceColor() {
+    return piece_color;
+}
+
 void Piece::setXYPos(int x, int y) {
     x_pos = x;
     y_pos = y;
@@ -61,7 +69,7 @@ void Piece::setFirstMove() {
     first_move = false;
 }
 
-bool Piece::canMovePieceToPos(int x, int y, Board board) {
+bool Piece::canMovePieceToPos(int x, int y, Board* board) {
     int dx, dy;
     dx = x - x_pos;
     dy = y - y_pos;
