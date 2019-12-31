@@ -85,7 +85,7 @@ bool Piece::canMovePieceToPos(int x, int y, Board* board) {
     } else if (piece_class == PieceClassify::ROOK) {
         return canMoveRookToPos(dx, dy, x_pos, y_pos, board);
     } else if (piece_class == PieceClassify::PAWN) {
-        canMovePawnToPos(dx, dy, x_pos, y_pos, piece_color, first_move, board);
+        return canMovePawnToPos(dx, dy, x_pos, y_pos, piece_color, first_move, board);
     } else {
         return false;
     }

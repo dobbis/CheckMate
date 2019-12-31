@@ -1,6 +1,6 @@
 #include "Board.hpp"
 
-Board::Board() {
+Board::Board(bool is_test) {
     pieces = new Piece*[32];
 
     pieces[0] = new Piece("PAWN", "BLACK", 0, 1);
@@ -46,12 +46,15 @@ Board::Board() {
             gameboard[i][j] = nullptr;
         }
     }
-
-    for (int i = 0; i < 8; i++) {
-        gameboard[0][i] = pieces[i + 8];
-        gameboard[1][i] = pieces[i];
-        gameboard[6][i] = pieces[i + 16];
-        gameboard[7][i] = pieces[i + 24];
+    if (is_test) {
+        gameboard[0][0] = pieces[9];
+    } else {
+        for (int i = 0; i < 8; i++) {
+            gameboard[0][i] = pieces[i + 8];
+            gameboard[1][i] = pieces[i];
+            gameboard[6][i] = pieces[i + 16];
+            gameboard[7][i] = pieces[i + 24];
+        }
     }
 }
 
@@ -83,6 +86,8 @@ bool Board::movePiecePosToPos(int x1, int y1, int x2, int y2) {
             }
             gameboard[y2][x2] = selected_piece;
             gameboard[y1][x1] = nullptr;
+            
+            selected_piece->setXYPos(x2, y2);
             return true;
         } else {
             return false;

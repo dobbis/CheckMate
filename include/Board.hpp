@@ -8,7 +8,7 @@ private:
     Piece*** gameboard;
     Piece** pieces;
 public:
-    Board();
+    Board(bool is_test);
     ~Board();
 
     Piece* getPieceAtPos(int x, int y);
