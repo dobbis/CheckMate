@@ -1,5 +1,6 @@
 #include "Piece.hpp"
 #include "Board.hpp"
+#include "Algorithm.hpp"
 
 Piece::Piece() {
     piece_class = PieceClassify::EMPTY;
@@ -7,6 +8,7 @@ Piece::Piece() {
     x_pos = 0;
     y_pos = 0;
     first_move = true;
+    dead_flag = false;
 }
 
 Piece::Piece(std::string piece_class_, std::string piece_color_, int xpos, int ypos) {
@@ -42,6 +44,7 @@ Piece::Piece(std::string piece_class_, std::string piece_color_, int xpos, int y
     x_pos = xpos;
     y_pos = ypos;
     first_move = true;
+    dead_flag = false;
 }
 
 std::pair<int, int> Piece::getXYPos() {
@@ -50,6 +53,10 @@ std::pair<int, int> Piece::getXYPos() {
 
 bool Piece::getFirstMove() {
     return first_move;
+}
+
+bool Piece::getDeadFlag() {
+    return dead_flag;
 }
 
 PieceClassify Piece::getPieceClass() {
@@ -69,23 +76,27 @@ void Piece::setFirstMove() {
     first_move = false;
 }
 
+void Piece::setDeadFlag() {
+    dead_flag = true;
+}
+
 bool Piece::canMovePieceToPos(int x, int y, Board* board) {
     int dx, dy;
     dx = x - x_pos;
     dy = y - y_pos;
 
     if (piece_class == PieceClassify::KING) {
-        return canMoveKingToPos(dx, dy);
+        return canMoveKingToPos(dx, dy, this, board);
     } else if (piece_class == PieceClassify::QUEEN) {
-        return canMoveQueenToPos(dx, dy, x_pos, y_pos, board);
+        return canMoveQueenToPos(dx, dy, this, board);
     } else if (piece_class == PieceClassify::BISHOP) {
-        return canMoveBishopToPos(dx, dy, x_pos, y_pos, board);
+        return canMoveBishopToPos(dx, dy, this, board);
     } else if (piece_class == PieceClassify::KNIGHT) {
-        return canMoveKnightToPos(dx, dy);
+        return canMoveKnightToPos(dx, dy, this, board);
     } else if (piece_class == PieceClassify::ROOK) {
-        return canMoveRookToPos(dx, dy, x_pos, y_pos, board);
+        return canMoveRookToPos(dx, dy, this, board);
     } else if (piece_class == PieceClassify::PAWN) {
-        return canMovePawnToPos(dx, dy, x_pos, y_pos, piece_color, first_move, board);
+        return canMovePawnToPos(dx, dy, this, board);
     } else {
         return false;
     }

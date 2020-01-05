@@ -2,7 +2,6 @@
 #define PIECE_HPP
 
 #include "Enums.hpp"
-#include "Algorithm.hpp"
 
 #include <string>
 
@@ -15,6 +14,7 @@ private:
     int x_pos;
     int y_pos;
     bool first_move;
+    bool dead_flag;
     
 public:
     Piece();
@@ -22,12 +22,15 @@ public:
 
     std::pair<int, int> getXYPos();
     bool getFirstMove();
+    bool getDeadFlag();
     PieceClassify getPieceClass();
     PieceColor getPieceColor();
 
+
     void setXYPos(int x, int y);
     void setFirstMove();
-
+    void setDeadFlag();
+    
     bool canMovePieceToPos(int x, int y, Board* board);
 };
 

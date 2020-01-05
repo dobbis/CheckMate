@@ -2,6 +2,7 @@
 #define IOMANAGER_HPP
 
 #include "Board.hpp"
+#include "Piece.hpp"
 
 #include <iostream>
 #include <string>

@@ -1,4 +1,6 @@
 #include "Board.hpp"
+#include "Piece.hpp"
+#include "Algorithm.hpp"
 
 Board::Board(bool is_test) {
     pieces = new Piece*[32];
@@ -83,6 +85,9 @@ bool Board::movePiecePosToPos(int x1, int y1, int x2, int y2) {
         if (selected_piece->canMovePieceToPos(x2, y2, this)) {
             if (selected_piece->getFirstMove()) {
                 selected_piece->setFirstMove();
+            }
+            if (gameboard[y2][x2] != nullptr) {
+                gameboard[y2][x2]->setDeadFlag();
             }
             gameboard[y2][x2] = selected_piece;
             gameboard[y1][x1] = nullptr;
