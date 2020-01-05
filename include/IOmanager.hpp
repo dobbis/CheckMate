@@ -9,5 +9,6 @@
 
 std::string getOneBlock(Piece* piece, int x, int y);
 void printGameboard(Board* board);
+std::pair<int, int> getKeyboardInput();
 
 #endif

@@ -43,9 +43,9 @@ bool availableMoveBishop(int dx, int dy, Piece* bishop, int count, Board* board)
         }
     }
 
-    int coef_x = dx / abs(dx), coef_y = dy / abs(dy);
+    int coef_x = (dx / abs(dx)), coef_y = (dy / abs(dy));
     if (board->getPieceAtPos(x + coef_x * count, y + coef_y * count) == nullptr) {
-        return availableMoveRook(dx, dy, bishop, count + 1, board);
+        return availableMoveBishop(dx, dy, bishop, count + 1, board);
     } else {
         return false;
     } 

@@ -39,7 +39,7 @@ std::string getOneBlock(Piece* piece, int x, int y) {
 }
 
 void printGameboard(Board* board) {
-    std::cout << " 0  1  2  3  4  5  6  7  8" << std::endl;
+    std::cout << " 0  1  2  3  4  5  6  7" << std::endl;
     std::cout << "-------------------------" << std::endl;
     for (int i = 0; i < 8; i++) {
         std::cout << "|";
@@ -50,3 +50,10 @@ void printGameboard(Board* board) {
     }
 }
 
+std::pair<int, int> getKeyboardInput() {
+    int x = -1, y = -1;
+    while (x < 0 || x > 7 || y < 0 || y > 7) {
+        std::cin >> x >> y;
+    }
+    return std::make_pair(x, y);
+}

@@ -72,12 +72,12 @@ void Piece::setXYPos(int x, int y) {
     y_pos = y;
 }
 
-void Piece::setFirstMove() {
-    first_move = false;
+void Piece::setFirstMove(bool flag) {
+    first_move = flag;
 }
 
-void Piece::setDeadFlag() {
-    dead_flag = true;
+void Piece::setDeadFlag(bool flag) {
+    dead_flag = flag;
 }
 
 bool Piece::canMovePieceToPos(int x, int y, Board* board) {

@@ -28,8 +28,8 @@ public:
 
 
     void setXYPos(int x, int y);
-    void setFirstMove();
-    void setDeadFlag();
+    void setFirstMove(bool flag);
+    void setDeadFlag(bool flag);
     
     bool canMovePieceToPos(int x, int y, Board* board);
 };
