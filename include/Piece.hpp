@@ -25,6 +25,7 @@ public:
     bool getDeadFlag();
     PieceClassify getPieceClass();
     PieceColor getPieceColor();
+    PieceColor getOpponentPieceColor();
 
 
     void setXYPos(int x, int y);

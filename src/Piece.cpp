@@ -67,6 +67,16 @@ PieceColor Piece::getPieceColor() {
     return piece_color;
 }
 
+PieceColor Piece::getOpponentPieceColor() {
+    if (piece_color == PieceColor::BLACK) {
+        return PieceColor::WHITE;
+    } else if (piece_color == PieceColor::WHITE) {
+        return PieceColor::BLACK;
+    } else {
+        return PieceColor::EMPTY;
+    }
+}
+
 void Piece::setXYPos(int x, int y) {
     x_pos = x;
     y_pos = y;
