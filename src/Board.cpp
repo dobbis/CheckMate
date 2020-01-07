@@ -107,13 +107,14 @@ void Board::loadLogFile() {
 
 }
 
-bool Board::movePiecePosToPos(int x1, int y1, int x2, int y2) {
+bool Board::movePiecePosToPos(int x1, int y1, int x2, int y2, bool possibility) {
     Piece* selected_piece = gameboard[y1][x1];
 
     if (selected_piece == nullptr) {
         return false;
     } else {
         if (selected_piece->canMovePieceToPos(x2, y2, this)) {
+            saveLogFile(x1, y1, x2, y2);
             if (selected_piece->getFirstMove()) {
                 selected_piece->setFirstMove(false);
             }
@@ -124,7 +125,15 @@ bool Board::movePiecePosToPos(int x1, int y1, int x2, int y2) {
             gameboard[y1][x1] = nullptr;
             
             selected_piece->setXYPos(x2, y2);
-            return true;
+            if (isChecked(selected_piece->getOpponentPieceColor())) {
+                loadLogFile();
+                return false;
+            } else {
+                if (possibility) {
+                    loadLogFile();
+                }
+                return true;
+            }
         } else {
             return false;
         }

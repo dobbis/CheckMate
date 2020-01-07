@@ -29,7 +29,7 @@ public:
     void saveLogFile(int x1, int y1, int x2, int y2);
     void loadLogFile();
 
-    bool movePiecePosToPos(int x1, int y1, int x2, int y2);
+    bool movePiecePosToPos(int x1, int y1, int x2, int y2, bool possibility);
     bool isChecked(PieceColor color);
 };
 
