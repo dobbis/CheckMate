@@ -74,13 +74,17 @@ bool availableMovePawn(int dx, int dy, Piece* pawn, Board* board) {
             return false;
         }
     } else if (dy < 0) {
-        if (piece->getPieceColor() == PieceColor::BLACK) {
+        if (piece == nullptr) {
+            return false;
+        } else if (piece->getPieceColor() == PieceColor::BLACK) {
             return true;
         } else {
             return false;
         }
     } else if (dy > 0) {
-        if (piece->getPieceColor() == PieceColor::WHITE) {
+        if (piece == nullptr) {
+            return false;
+        } else if (piece->getPieceColor() == PieceColor::WHITE) {
             return true;
         } else {
             return false;
