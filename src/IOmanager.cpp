@@ -1,5 +1,7 @@
 #include "IOmanager.hpp"
 
+#include <algorithm>
+
 std::string getOneBlock(Piece* piece, int x, int y) {
     if (piece == nullptr) {
         if ((x + y) % 2 == 0) {
@@ -40,13 +42,38 @@ std::string getOneBlock(Piece* piece, int x, int y) {
 
 void printGameboard(Board* board) {
     std::cout << " 0  1  2  3  4  5  6  7" << std::endl;
-    std::cout << "-------------------------" << std::endl;
+    std::cout << "-------------------------          ---------------------------------------------------------" << std::endl;
     for (int i = 0; i < 8; i++) {
         std::cout << "|";
         for (int j = 0; j < 8; j++) {
             std::cout << getOneBlock(board->getPieceAtPos(j, i), j, i) << "|";
         }
-        std::cout << " " << i << std::endl << "-------------------------" << std::endl;
+        std::cout << " " << i << "        |";
+        for (int j = 0; j < 8; j++) {
+            std::cout << "(" << j << ", " << i << ")" << "|";
+        }
+        std::cout << std::endl << "-------------------------          ---------------------------------------------------------" << std::endl;
+    }
+}
+
+void printGameboard(Board* board, Piece* piece) {
+    std::vector<std::pair<int, int>> avail_move = board->getAvailableMove(piece);
+    std::cout << " 0  1  2  3  4  5  6  7" << std::endl;
+    std::cout << "-------------------------          ---------------------------------------------------------" << std::endl;
+    for (int i = 0; i < 8; i++) {
+        std::cout << "|";
+        for (int j = 0; j < 8; j++) {
+            std::cout << getOneBlock(board->getPieceAtPos(j, i), j, i) << "|";
+        }
+        std::cout << " " << i << "        |";
+        for (int j = 0; j < 8; j++) {
+            if (std::find(avail_move.begin(), avail_move.end(), std::make_pair(j, i)) == avail_move.end()) {
+                std::cout << "      " << "|";
+            } else {
+                std::cout << "(" << j << ", " << i << ")" << "|";
+            }
+        }
+        std::cout << std::endl << "-------------------------          ---------------------------------------------------------" << std::endl;
     }
 }
 
