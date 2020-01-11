@@ -167,3 +167,18 @@ bool Board::isChecked(PieceColor color) {
     }
     return false;
 }
+
+std::vector<std::pair<int, int>> Board::getAvailableMove(Piece* piece) {
+    std::vector<std::pair<int, int>> avail_move;
+    int x1, y1;
+    x1 = piece->getXYPos().first;
+    y1 = piece->getXYPos().second;
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (movePiecePosToPos(x1, y1, j, i, true)) {
+                avail_move.push_back(std::make_pair(i, j));
+            }
+        }
+    }
+    return avail_move;
+}
