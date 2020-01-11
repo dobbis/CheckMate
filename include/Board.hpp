@@ -33,6 +33,7 @@ public:
 
     bool movePiecePosToPos(int x1, int y1, int x2, int y2, bool possibility);
     bool isChecked(PieceColor color);
+    bool isCheckMate(PieceColor color);
     std::vector<std::pair<int, int>> getAvailableMove(Piece* piece);
 };
 

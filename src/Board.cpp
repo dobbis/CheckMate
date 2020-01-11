@@ -168,6 +168,29 @@ bool Board::isChecked(PieceColor color) {
     return false;
 }
 
+bool Board::isCheckMate(PieceColor color) {
+    if (color == PieceColor::BLACK) {
+        for (int i = 16; i < 32; i++) {
+            if (pieces[i]->getDeadFlag()) {
+                continue;
+            }
+            if (!getAvailableMove(pieces[i]).empty()) {
+                return false;
+            }
+        }
+    } else if (color == PieceColor::WHITE) {
+        for (int i = 0; i < 16; i++) {
+            if (pieces[i]->getDeadFlag()) {
+                continue;
+            }
+            if (!getAvailableMove(pieces[i]).empty()) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 std::vector<std::pair<int, int>> Board::getAvailableMove(Piece* piece) {
     std::vector<std::pair<int, int>> avail_move;
     int x1, y1;
@@ -176,7 +199,7 @@ std::vector<std::pair<int, int>> Board::getAvailableMove(Piece* piece) {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if (movePiecePosToPos(x1, y1, j, i, true)) {
-                avail_move.push_back(std::make_pair(i, j));
+                avail_move.push_back(std::make_pair(j, i));
             }
         }
     }
