@@ -10,13 +10,12 @@ private:
     PieceColor opponent;
     std::pair<int, int> input_1, input_2;
     bool checkmate_flag;
-    PieceColor check_flag;
 
 public:
     GameManager();
     ~GameManager();
 
-    bool startChess();
+    void startChess();
 };
 
 #endif
