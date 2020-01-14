@@ -43,6 +43,9 @@ void GameManager::startChess() {
             std::cout << "You can't move there" << std::endl;
             continue;
         }
+        if (board->getPieceAtPos(x2, y2)->canPromotePawn()) {
+            // mouse input
+        }
         if (board->isChecked(turn)) {
             checkmate_flag = board->isCheckMate(turn);
         }

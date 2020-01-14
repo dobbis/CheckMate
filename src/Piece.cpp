@@ -90,6 +90,30 @@ void Piece::setDeadFlag(bool flag) {
     dead_flag = flag;
 }
 
+bool Piece::canPromotePawn() {
+    if (piece_class != PieceClassify::PAWN) {
+        return false;
+    }
+
+    if (piece_color == PieceColor::BLACK) {
+        if (y_pos == 7) {
+            piece_class = PieceClassify::QUEEN;
+            return true;
+        } else {
+            return false;
+        }
+    } else if (piece_color == PieceColor::WHITE) {
+        if (y_pos == 0) {
+            piece_class = PieceClassify::QUEEN;
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
 bool Piece::canMovePieceToPos(int x, int y, Board* board) {
     int dx, dy;
     dx = x - x_pos;

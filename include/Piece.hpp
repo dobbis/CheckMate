@@ -27,11 +27,11 @@ public:
     PieceColor getPieceColor();
     PieceColor getOpponentPieceColor();
 
-
     void setXYPos(int x, int y);
     void setFirstMove(bool flag);
     void setDeadFlag(bool flag);
     
+    bool canPromotePawn();
     bool canMovePieceToPos(int x, int y, Board* board);
 };
 
